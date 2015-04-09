@@ -27,7 +27,6 @@ public class User implements Serializable {
 		super();
 	}
 	
-
 	public User(String email, String login, String password) {
 		super();
 		this.email = email;

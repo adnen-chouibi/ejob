@@ -8,20 +8,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Profession  implements Serializable{
+public class City implements Serializable{
 	
-	private static final long serialVersionUID = 1L;
-	private Integer Id;	
+	private Integer Id;
 	private String Name;
+	private static final long serialVersionUID = 1L;
 	
-	public Profession(){
+	public City(){
 		super();
 	}
-	public Profession(Integer id, String name) {
+	
+	public City(Integer id, String name) {
 		super();
 		Id = id;
 		Name = name;
-	}
+	}	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -37,6 +38,7 @@ public class Profession  implements Serializable{
 	public void setName(String name) {
 		Name = name;
 	}
+	
 	
 	
 }
