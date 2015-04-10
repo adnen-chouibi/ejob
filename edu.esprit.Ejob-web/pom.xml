@@ -31,11 +31,7 @@
 			<version>7.1.1.Final</version>
 			<type>pom</type>
 		</dependency>
-		<dependency>
-			<groupId>edu.esprit.Ejob-ejb</groupId>
-			<artifactId>edu.esprit.Ejob-ejb</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
