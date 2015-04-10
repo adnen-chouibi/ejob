@@ -16,7 +16,7 @@ import domain.Entreprise;
 @Singleton
 @Startup
 public class DataBasePopulator {
-	@PersistenceContext
+	@PersistenceContext(unitName="edu.esprit.Ejob-ejb")
 	private EntityManager entityManager;
 
 	/**

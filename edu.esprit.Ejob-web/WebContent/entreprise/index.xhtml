@@ -1,17 +1,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head></h:head>
 
 <body>
 
-<f:metadata>
-  <f:event type="preRenderView" listener="#{securityMB.checkLogIn}" />
-</f:metadata>
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{securityMB.checkLogIn}" />
+	</f:metadata>
 
 
-<h1>list of Published Jobs By User <h:outputText value="#{beanOne.userLoggedIn.getLogin()}" /> </h1>
+	<h1>
+		list of Published Jobs By User
+		<h:outputText value="#{beanOne.userLoggedIn.getLogin()}" />
+	</h1>
 	<h:dataTable value="#{jobBean.jobs}" var="j" border="1">
 		<h:column id="column1">
 			<f:facet name="header">
@@ -37,8 +41,38 @@
 			</f:facet>
 			<h:outputText value="#{j.contract}" />
 		</h:column>
+		<h:column id="column4">
+			<f:facet name="header">
+				<h:outputText value="Actions"></h:outputText>
+			</f:facet>
+			<ul>
+				<li>
+					<h:link value="Edit" outcome="edit">
+						<f:param name="id" value="#{j.id}" />
+					</h:link></li>
+				<li>
+					<h:link value="Delete" outcome="delete">
+						<f:param name="id" value="#{j.id}" />
+					</h:link></li>
+				<li>
+				<c:choose>
+						<c:when test="#{j.is_active == true}">
+							<h:link value="Disable" outcome="changeStatus">
+								<f:param name="id" value="#{j.id}" />
+								<f:param name="action" value="disable" />
+							</h:link>
+						</c:when>
+						<c:otherwise>
+							<h:link value="Enable" outcome="changeStatus">
+								<f:param name="id" value="#{j.id}" />
+								<f:param name="action" value="enable" />
+							</h:link>
+						</c:otherwise>
+				</c:choose>
+				</li>
+			</ul>
+		</h:column>
 
-		
 	</h:dataTable>
 
 </body>

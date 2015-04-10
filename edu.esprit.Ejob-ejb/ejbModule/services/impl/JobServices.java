@@ -12,7 +12,7 @@ import services.interfaces.JobServicesLocal;
 @Stateless
 public class JobServices implements JobServicesLocal {
 	
-	@PersistenceContext
+	@PersistenceContext(unitName="edu.esprit.Ejob-ejb")
 	private EntityManager entityManager;
 	
 	@SuppressWarnings("unchecked")

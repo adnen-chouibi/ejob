@@ -16,7 +16,7 @@ import domain.User;
  */
 @Stateless
 public class UserServices implements UserServicesRemote, UserServicesLocal {
-	@PersistenceContext
+	@PersistenceContext(unitName="edu.esprit.Ejob-ejb")
 	private EntityManager entityManager;
 
 	/**

@@ -11,7 +11,7 @@
 		<class>domain.Profession</class>
 		<class>domain.City</class>
 		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 	</persistence-unit>
 </persistence>
