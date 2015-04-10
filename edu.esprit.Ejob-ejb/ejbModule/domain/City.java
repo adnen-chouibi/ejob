@@ -18,9 +18,8 @@ public class City implements Serializable{
 		super();
 	}
 	
-	public City(Integer id, String name) {
+	public City(String name) {
 		super();
-		Id = id;
 		Name = name;
 	}	
 	

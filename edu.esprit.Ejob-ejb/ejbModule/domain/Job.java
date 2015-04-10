@@ -1,40 +1,73 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Job implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private Integer Id;
 	private String title;
 	private String description;
 	private Boolean is_active;
 	private City city;
+	@Enumerated(EnumType.STRING)
 	private JobType job_type;
-	private Contarct contract;
+	@Enumerated(EnumType.STRING)
+	private Contract contract;
+	@Enumerated(EnumType.STRING)
 	private EducationDegree education_degree;
+	@Enumerated(EnumType.STRING)
 	private ProfessionalExperience professional_experience;
+
+
+	private Entreprise entreprise;
+
+	
+	private Date createdAt;
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	@Temporal(TemporalType.DATE)
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "entreprise_id", nullable = false)
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
+	}
 
 	public Job() {
 		super();
 	}
 
-	public Job(Integer id, String title, String description, Boolean is_active,
-			City city, JobType job_type, Contarct contract,
+	public Job(String title, String description, Boolean is_active, City city,
+			JobType job_type, Contract contract,
 			EducationDegree education_degree,
 			ProfessionalExperience professional_experience,
-			Profession profession) {
+			Entreprise entreprise, Date createdAt, Profession profession) {
 		super();
-		this.Id = id;
 		this.title = title;
 		this.description = description;
 		this.is_active = is_active;
@@ -43,6 +76,8 @@ public class Job implements Serializable {
 		this.contract = contract;
 		this.education_degree = education_degree;
 		this.professional_experience = professional_experience;
+		this.entreprise = entreprise;
+		this.createdAt = createdAt;
 		this.profession = profession;
 	}
 
@@ -50,7 +85,7 @@ public class Job implements Serializable {
 		JUNIOR, SENIOR, MANAGER, EXECUTIVE
 	}
 
-	public enum Contarct {
+	public enum Contract {
 		JUNIOR, SENIOR, MANAGER, EXECUTIVE
 	}
 
@@ -61,7 +96,7 @@ public class Job implements Serializable {
 	public enum ProfessionalExperience {
 		JUNIOR, SENIOR, MANAGER, EXECUTIVE
 	}
-	
+
 	private Profession profession;
 
 	public JobType getJob_type() {
@@ -72,11 +107,11 @@ public class Job implements Serializable {
 		this.job_type = job_type;
 	}
 
-	public Contarct getContract() {
+	public Contract getContract() {
 		return contract;
 	}
 
-	public void setContract(Contarct contract) {
+	public void setContract(Contract contract) {
 		this.contract = contract;
 	}
 
@@ -140,7 +175,7 @@ public class Job implements Serializable {
 	public City getCity() {
 		return city;
 	}
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "profession_id", nullable = false)
 	public Profession getProfession() {

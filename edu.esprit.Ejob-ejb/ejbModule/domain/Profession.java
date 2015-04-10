@@ -17,9 +17,8 @@ public class Profession  implements Serializable{
 	public Profession(){
 		super();
 	}
-	public Profession(Integer id, String name) {
+	public Profession(String name) {
 		super();
-		Id = id;
 		Name = name;
 	}
 	

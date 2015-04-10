@@ -10,5 +10,7 @@ import domain.Job;
 public interface JobServicesLocal {
 	
 	List<Job> findAllJobs();
+
+	List<Job> search(Job job);
 	
 }
