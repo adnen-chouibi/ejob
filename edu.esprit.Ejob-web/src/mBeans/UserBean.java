@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 
 import services.interfaces.UserServicesLocal;
 import domain.Candidate;
+import domain.Entreprise;
 import domain.User;
 
 @ManagedBean(name="beanOne")
@@ -16,6 +17,8 @@ import domain.User;
 public class UserBean {
 	// model
 	private Candidate candidate = new Candidate();
+	private Entreprise entreprise = new Entreprise();
+	
 	private List<User> users = new ArrayList<>();
 	private User userLoggedIn = new User();
 	private String login;
@@ -44,25 +47,31 @@ public class UserBean {
 	}*/
 
 	public String doLogin() {
-		userLoggedIn = userServicesLocal.login(login,
-				password);
-		if (userLoggedIn != null) {
-			System.out.println("not null");
+		userLoggedIn = userServicesLocal.login(login,password);
+		
+		if (userLoggedIn != null) {		
 
 			if (userLoggedIn instanceof Candidate) {
 				System.out.println("candidate");
 				System.out.println(userLoggedIn.getLogin());
+				
 				candidate = (Candidate) userLoggedIn;
 				return "/candidat/index";
 			} else {
-				System.out.println("entreprise");
-
+				
+				entreprise = (Entreprise) userLoggedIn;
 				return "/entreprise/index";
 			}
 		} else {
 			return "/error";
 		}
 	}
+	
+	 public boolean isLoggedIn() {
+
+	      return userLoggedIn != null;
+
+	   }
 /*
 	public Employee getEmployee() {
 		return employee;

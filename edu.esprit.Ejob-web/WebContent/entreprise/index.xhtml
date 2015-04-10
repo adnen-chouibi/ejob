@@ -1,13 +1,46 @@
-<html>
-<head>
-
-<title>Redirection en htm</title>
-
-
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head></h:head>
 
 <body>
-entreprise login
+
+<f:metadata>
+  <f:event type="preRenderView" listener="#{securityMB.checkLogIn}" />
+</f:metadata>
+
+
+<h1>list of Published Jobs By User <h:outputText value="#{beanOne.userLoggedIn.getLogin()}" /> </h1>
+	<h:dataTable value="#{jobBean.jobs}" var="j" border="1">
+		<h:column id="column1">
+			<f:facet name="header">
+				<h:outputText value="#"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{j.id}" />
+		</h:column>
+		<h:column id="column2">
+			<f:facet name="header">
+				<h:outputText value="title"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{j.title}" />
+		</h:column>
+		<h:column id="column3">
+			<f:facet name="header">
+				<h:outputText value="desciption"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{j.description}" />
+		</h:column>
+		<h:column id="column4">
+			<f:facet name="header">
+				<h:outputText value="Contratct"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{j.contract}" />
+		</h:column>
+
+		
+	</h:dataTable>
+
 </body>
 
 </html>
